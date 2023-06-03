@@ -16,3 +16,15 @@ You should see the player setup screen to enter the names for Player X and Playe
 - Shows game status (X's turn, O's turn, X name wins, O name wins, Draw).
 - Reset game button to restart.
 - Uses GetX state management to store game state across screens.
+
+
+## Interfaces:
+- first screen:
+
+
+![first_screen](https://github.com/al-batol/Tic-Tac-Game/assets/127296481/ba628c27-b986-4c98-a3c6-47b2587a68ae)
+- second screen:
+
+
+![second_screen](https://github.com/al-batol/Tic-Tac-Game/assets/127296481/ea8661f2-5800-4a92-9a79-d469060af5e2)
+
