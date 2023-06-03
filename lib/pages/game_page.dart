@@ -26,7 +26,7 @@ class GamePage extends StatelessWidget {
                 child: IconButton(
                   onPressed: () {
                     Get.back();
-                    homeCtr.restGame();
+                    homeCtr.resetGame();
                   },
                   splashColor: Colors.transparent,
                   icon: Icon(
@@ -39,7 +39,7 @@ class GamePage extends StatelessWidget {
               SizedBox(height: 3.0.hp),
               Center(
                   child: GetBuilder<HomeController>(
-                builder: (ctr) => ctr.winner == 0
+                builder: (ctr) => ctr.status == 0
                     ? RichText(
                         text: TextSpan(
                             text: 'Turn:',
@@ -86,7 +86,7 @@ class GamePage extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         ctr.xoGame(index);
-                        if (ctr.winner > 0 && ctr.winner < 4) {
+                        if (ctr.status > 0 && ctr.status < 4) {
                           var (status, name) = ctr.whoWon();
                           Get.defaultDialog(
                               title: status,
@@ -106,7 +106,7 @@ class GamePage extends StatelessWidget {
                                 ],
                               ),
                               onWillPop: () async {
-                                ctr.winner = 4;
+                                ctr.status = 4;
                                 return Future.value(true);
                               });
                         }
@@ -130,7 +130,7 @@ class GamePage extends StatelessWidget {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onPressed: () {
-                    homeCtr.restGame();
+                    homeCtr.resetGame();
                   },
                   child: Text(
                     'Reset',

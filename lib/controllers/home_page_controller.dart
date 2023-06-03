@@ -14,7 +14,7 @@ class HomeController extends GetxController {
   int secondPlayerO = 2;
   String firstPlayerName = '';
   String secondPlayerName = '';
-  int winner = 0;
+  int status = 0;
   String winnerName = '';
 
   String? checkNames(String name) {
@@ -40,16 +40,16 @@ class HomeController extends GetxController {
     }
   }
 
-  void restGame() {
+  void resetGame() {
     playerTurn = false;
-    winner = 0;
+    status = 0;
     winnerName = '';
     fillLists();
     update();
   }
 
   void xoGame(int index) {
-    if (!checkGame() && game[index]['value'] == 0 && winner == 0) {
+    if (!checkGame() && game[index]['value'] == 0 && status == 0) {
       int choice = playerTurn ? secondPlayerO : firstPlayerX;
       String color = playerTurn ? 'second' : 'first';
       int countRowsFPlayer = 0;
@@ -109,19 +109,19 @@ class HomeController extends GetxController {
               countColumnsFPlayer == 3 ||
               countMiddleFPlayer == 3 ||
               countOtherMiddleFPlayer == 3) {
-            winner = 1;
+            status = 1;
             break;
           } else if (countRowsSPlayer == 6 ||
               countColumnsSPlayer == 6 ||
               countMiddleSPlayer == 6 ||
               countOtherMiddleSPlayer == 6) {
-            winner = 2;
+            status = 2;
             break;
           }
         }
       }
       if (checkGame() && game[index]['value'] > 0) {
-        winner = 3;
+        status = 3;
       }
     }
     update();
@@ -150,7 +150,7 @@ class HomeController extends GetxController {
   }
 
   Color whichColorChose(int index) {
-    if (winner > 0) {
+    if (status > 0) {
       return AppColors.winnerColor;
     } else if (game[index]['color'] == 'first') {
       return AppColors.xColor;
@@ -162,22 +162,22 @@ class HomeController extends GetxController {
   }
 
   (String, String) whoWon() {
-    if (winner == 1) {
+    if (status == 1) {
       return ('Congratulations', '$firstPlayerName Won the Game');
-    } else if (winner == 2) {
+    } else if (status == 2) {
       return ('Congratulations', '$secondPlayerName Won the Game');
-    } else if (winner == 3) {
+    } else if (status == 3) {
       return ('Good Luck!', 'Players Draw, try again.');
     }
     return ('Error!', 'Sorry, Something went happened');
   }
 
   String getLiveName() {
-    if (winner == 1) {
+    if (status == 1) {
       winnerName = '$firstPlayerName Won';
-    } else if (winner == 2) {
+    } else if (status == 2) {
       winnerName = '$secondPlayerName Won';
-    } else if (winner == 3) {
+    } else if (status == 3) {
       winnerName = 'Players Draw';
     }
     return winnerName;

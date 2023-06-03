@@ -138,7 +138,7 @@ class HomePage extends GetView<HomeController> {
                         controller.secondPlayerName = controller.secondEditingCtr.text.replaceRange(0, 1, controller.secondEditingCtr.text[0].toUpperCase());
                         controller.firstEditingCtr.clear();
                         controller.secondEditingCtr.clear();
-                        controller.restGame();
+                        controller.resetGame();
                       }
                     },
                     child: Text(
